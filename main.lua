@@ -117,7 +117,7 @@ enterStateThen["idle"] = function()
     else model.loop("Relax") end
 end
 ipc.addPanelItem(
-    { type = "button", prompt = "切换站坐躺", hint = "如屏幕里面找不到小人，请最小化所有窗口然后点击此按钮" },
+    { type = "button", prompt = "切换站坐躺", hint = "变换小人的姿势（会保存下来）" },
     function()
         settings.idleMotion = (settings.idleMotion == 3 and 1 or settings.idleMotion + 1)
         settings:save()
