@@ -107,8 +107,7 @@ ipc.addPanelItem(
 
 -- 绑定事件
 ev.on(window.draw, model.draw)
-ev.on(window.after_draw, idle_audios_eve);
-ev.on(window.after_draw, audio.update);
+ev.on(window.after_draw, idle_audios_eve)
 
 -- 处理idle
 enterStateThen["idle"] = function()
