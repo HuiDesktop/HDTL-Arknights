@@ -9,30 +9,7 @@ local audio = require("blockly_audio")
 local ipc = require("ipc")
 local win32 = require("win32")
 
-ArgTable = {}
-
--- 解析分割参数
-for i, v in pairs(arg) do
-    print('Arg ' .. i .. ': ' .. v)
-    local a, b = string.find(v, '=')
-    if a then
-        ArgTable[string.sub(v, 1, a - 1)] = string.sub(v, a + 1)
-    end
-end
-
-local modelPath = ''
-local audioPath = ''
-local confPath = ''
-
-if ArgTable.skeleton ~= nil then modelPath = ArgTable.skeleton..'/app/' end
-if ArgTable.audio ~= nil then audioPath = ArgTable.audio..'/app/' end
-if ArgTable.conf ~= nil then confPath = ArgTable.conf..'/' end
-
-print('Model path: '.. modelPath)
-print('Audio path: '.. audioPath)
-print('Config path: '..confPath)
-
-local modelNameFile = io.open(modelPath.."assets/name.txt", "r")
+local modelNameFile = io.open("assets/name.txt", "r")
 if modelNameFile == nil then log("failed to load model name") os.exit(1, true) return end
 local modelName = modelNameFile:read("l")
 modelNameFile:close()
@@ -54,11 +31,11 @@ local enterState = function(name)
 end
 
 -- 加载设置
-local settings = settingsMan.load(confPath.."settings.json", true)
+local settings = settingsMan.load("settings.json", true)
 settings:default({ walk = true, drag = true, volume = 50, idleAudioProb = 60 ,startDistance = 500, stopDistance = 200, scale = 50, drop = true, transparency = 255, autoHide = true, idleMotion = 1, launchAudio = false, hittest = true })
 settings:save()
 
-local def = settingsMan.load(audioPath.."assets/audio.conf.json", false)
+local def = settingsMan.load("assets/audio.conf.json", false)
 
 -- 新建窗口
 window.create { vsync = true, topmost = true, transparent = true, autoHide = true, settings = settings:access("window") }
