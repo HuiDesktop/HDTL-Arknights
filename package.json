@@ -1,0 +1,11 @@
+{
+  "runnable": true,
+  "dep": {
+      "skeleton": { "required": "required", "type": "package" },
+      "audio": { "required": "required", "type": "package" },
+      "conf": { "required": "create", "type": "config", "zone": "local" }
+  },
+  "exec": "luajit.exe",
+  "args": ["main.lua"],
+  "autoRun": ["--autorun"]
+}
